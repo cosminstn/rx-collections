@@ -6,7 +6,8 @@ This library offers a set of collections developed with reactive principles.
 ## Drawbacks
 
 ## Future TODOs 
-
+- [x] Implement for `java.util.HashMap`
+- [x] Implement for `java.util.TreeMap`
 - [ ] Implement for `java.util.ArrayList`  
 - [ ] Implement for `java.util.HashSet`
 - [ ] Implement for `java.util.TreeSet`
