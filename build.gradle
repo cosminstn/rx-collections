@@ -3,7 +3,35 @@ plugins {
 }
 
 group 'tech.sharply'
-version '1.0-SNAPSHOT'
+version '1.0.1'
+
+task incrementPatch {
+    doLast {
+        Integer patch = version.substring(version.lastIndexOf('.') + 1).toInteger() + 1
+        String rest = version.substring(0, version.lastIndexOf('.'))
+        String buildFileText = buildFile.getText().replaceFirst("version '$version'", "version '" + rest + "." + patch + "'")
+        buildFile.setText(buildFileText)
+    }
+}
+
+task incrementMinor {
+    doLast {
+        Integer major = version.substring(0, version.indexOf('.')).toInteger()
+        Integer patch = version.substring(version.lastIndexOf('.') + 1).toInteger()
+        Integer minor = version.substring(version.indexOf('.') + 1, version.lastIndexOf('.')).toInteger() + 1
+        String buildFileText = buildFile.getText().replaceFirst("version '$version'", "version '" + major + "." + minor + "." + patch + "'")
+        buildFile.setText(buildFileText)
+    }
+}
+
+task incrementMajor {
+    doLast {
+        Integer major = version.substring(0, version.indexOf('.')).toInteger() + 1
+        String rest = version.substring(version.indexOf('.') + 1)
+        String buildFileText = buildFile.getText().replaceFirst("version '$version'", "version '" + major + "." + rest + "'")
+        buildFile.setText(buildFileText)
+    }
+}
 
 repositories {
     mavenCentral()
