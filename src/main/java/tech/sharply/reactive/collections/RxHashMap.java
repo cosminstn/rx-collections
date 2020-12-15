@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * On every change emits the whole new value.
+ * A HashMap extension that on every put/remove operation emits the complete new state.
  * E.g.:
  * data: (1, 2), (3, 5)
  * cmd put(4, 4)

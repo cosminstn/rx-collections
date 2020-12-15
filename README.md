@@ -9,7 +9,7 @@ This library offers a set of collections developed with reactive principles.
 - [x] Implement for `java.util.HashMap`
 - [x] Implement test for RxHashMap
 - [x] Implement for `java.util.TreeMap`
-- [x] Implement tests for RxTreeMap
+- [ ] Implement tests for RxTreeMap
 - [ ] Implement for `java.util.ArrayList`  
 - [ ] Implement for `java.util.HashSet`
 - [ ] Implement for `java.util.TreeSet`
