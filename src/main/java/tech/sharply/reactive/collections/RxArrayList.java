@@ -3,31 +3,27 @@ package tech.sharply.reactive.collections;
 import io.reactivex.rxjava3.processors.PublishProcessor;
 import lombok.Getter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * A TreeSet extension that on every put/remove operation emits the complete new state.
- * Warning: Changes to value object property level should be emitted manually; RxTreeSet cannot detect those changes.
+ * An ArrayList extension that on every put/remove operation emits the complete new state.
+ * Warning: Changes to value object property level should be emitted manually; RxArrayList cannot detect those changes.
  * @param <V>
  */
 @Getter
-public class RxTreeSet<V> extends TreeSet<V> implements IRxCollection {
+public class RxArrayList<V> extends ArrayList<V> implements IRxCollection {
 
-	private final PublishProcessor<TreeSet<V>> publisher;
+	private final PublishProcessor<ArrayList<V>> publisher;
 
-	public RxTreeSet() {
+	public RxArrayList() {
 		super();
 		this.publisher = PublishProcessor.create();
 	}
 
-	public RxTreeSet(Collection<? extends V> collection) {
+	public RxArrayList(Collection<? extends V> collection) {
 		super(collection);
-		this.publisher = PublishProcessor.create();
-	}
-
-	public RxTreeSet(Comparator<? super V> comparator) {
-		super(comparator);
 		this.publisher = PublishProcessor.create();
 	}
 

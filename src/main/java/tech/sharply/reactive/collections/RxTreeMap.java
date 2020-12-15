@@ -9,7 +9,7 @@ import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Getter
-public class RxTreeMap<K, V> extends TreeMap<K, V> implements RxCollection {
+public class RxTreeMap<K, V> extends TreeMap<K, V> implements IRxCollection {
 
 	private final PublishProcessor<TreeMap<K, V>> publisher;
 

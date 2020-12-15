@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * @param <V>
  */
 @Getter
-public class RxHashMap<K, V> extends HashMap<K, V> implements RxCollection {
+public class RxHashMap<K, V> extends HashMap<K, V> implements IRxCollection {
 
 	private final PublishProcessor<HashMap<K, V>> publisher;
 	// TODO: To look into ReplayProcessor as well

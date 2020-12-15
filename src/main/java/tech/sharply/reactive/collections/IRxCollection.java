@@ -1,6 +1,6 @@
 package tech.sharply.reactive.collections;
 
-public interface RxCollection {
+public interface IRxCollection {
 
 	/**
 	 * Allows to manually publish the current state.
