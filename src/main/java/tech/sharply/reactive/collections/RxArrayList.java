@@ -1,5 +1,6 @@
 package tech.sharply.reactive.collections;
 
+import io.reactivex.rxjava3.processors.FlowableProcessor;
 import io.reactivex.rxjava3.processors.PublishProcessor;
 import lombok.Getter;
 
@@ -15,16 +16,16 @@ import java.util.concurrent.atomic.AtomicReference;
 @Getter
 public class RxArrayList<V> extends ArrayList<V> implements IRxCollection {
 
-	private final PublishProcessor<ArrayList<V>> publisher;
+	private final FlowableProcessor<ArrayList<V>> publisher;
 
 	public RxArrayList() {
 		super();
-		this.publisher = PublishProcessor.create();
+		this.publisher = PublishProcessor.<ArrayList<V>>create().toSerialized();
 	}
 
 	public RxArrayList(Collection<? extends V> collection) {
 		super(collection);
-		this.publisher = PublishProcessor.create();
+		this.publisher = PublishProcessor.<ArrayList<V>>create().toSerialized();
 	}
 
 	@Override

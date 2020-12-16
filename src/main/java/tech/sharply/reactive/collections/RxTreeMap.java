@@ -1,5 +1,6 @@
 package tech.sharply.reactive.collections;
 
+import io.reactivex.rxjava3.processors.FlowableProcessor;
 import io.reactivex.rxjava3.processors.PublishProcessor;
 import lombok.Getter;
 
@@ -11,21 +12,21 @@ import java.util.concurrent.atomic.AtomicReference;
 @Getter
 public class RxTreeMap<K, V> extends TreeMap<K, V> implements IRxCollection {
 
-	private final PublishProcessor<TreeMap<K, V>> publisher;
+	private final FlowableProcessor<TreeMap<K, V>> publisher;
 
 	public RxTreeMap() {
 		super();
-		this.publisher = PublishProcessor.create();
+		this.publisher = PublishProcessor.<TreeMap<K, V>>create().toSerialized();
 	}
 
 	public RxTreeMap(Map<? extends K, ? extends V> map) {
 		super(map);
-		this.publisher = PublishProcessor.create();
+		this.publisher = PublishProcessor.<TreeMap<K, V>>create().toSerialized();
 	}
 
 	public RxTreeMap(Comparator<? super K> comparator) {
 		super(comparator);
-		this.publisher = PublishProcessor.create();
+		this.publisher = PublishProcessor.<TreeMap<K, V>>create().toSerialized();
 	}
 
 	@Override
@@ -53,6 +54,7 @@ public class RxTreeMap<K, V> extends TreeMap<K, V> implements IRxCollection {
 		super.clear();
 		this.publish();
 	}
+
 
 	@Override
 	public void publish() {

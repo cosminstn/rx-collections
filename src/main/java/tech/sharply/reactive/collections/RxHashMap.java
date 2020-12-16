@@ -1,5 +1,6 @@
 package tech.sharply.reactive.collections;
 
+import io.reactivex.rxjava3.processors.FlowableProcessor;
 import io.reactivex.rxjava3.processors.PublishProcessor;
 import lombok.Getter;
 
@@ -25,22 +26,22 @@ import java.util.concurrent.atomic.AtomicReference;
 @Getter
 public class RxHashMap<K, V> extends HashMap<K, V> implements IRxCollection {
 
-	private final PublishProcessor<HashMap<K, V>> publisher;
+	private final FlowableProcessor<HashMap<K, V>> publisher;
 	// TODO: To look into ReplayProcessor as well
 
 	public RxHashMap() {
 		super();
-		this.publisher = PublishProcessor.create();
+		this.publisher = PublishProcessor.<HashMap<K, V>>create().toSerialized();
 	}
 
 	public RxHashMap(Map<? extends K, ? extends V> map) {
 		super(map);
-		this.publisher = PublishProcessor.create();
+		this.publisher = PublishProcessor.<HashMap<K, V>>create().toSerialized();
 	}
 
 	public RxHashMap(int initialCapacity) {
 		super(initialCapacity);
-		this.publisher = PublishProcessor.create();
+		this.publisher = PublishProcessor.<HashMap<K, V>>create().toSerialized();
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package tech.sharply.reactive.collections;
 
+import io.reactivex.rxjava3.processors.FlowableProcessor;
 import io.reactivex.rxjava3.processors.PublishProcessor;
 import lombok.Getter;
 
@@ -14,21 +15,21 @@ import java.util.concurrent.atomic.AtomicReference;
 @Getter
 public class RxTreeSet<V> extends TreeSet<V> implements IRxCollection {
 
-	private final PublishProcessor<TreeSet<V>> publisher;
+	private final FlowableProcessor<TreeSet<V>> publisher;
 
 	public RxTreeSet() {
 		super();
-		this.publisher = PublishProcessor.create();
+		this.publisher = PublishProcessor.<TreeSet<V>>create().toSerialized();
 	}
 
 	public RxTreeSet(Collection<? extends V> collection) {
 		super(collection);
-		this.publisher = PublishProcessor.create();
+		this.publisher = PublishProcessor.<TreeSet<V>>create().toSerialized();
 	}
 
 	public RxTreeSet(Comparator<? super V> comparator) {
 		super(comparator);
-		this.publisher = PublishProcessor.create();
+		this.publisher = PublishProcessor.<TreeSet<V>>create().toSerialized();
 	}
 
 	@Override
